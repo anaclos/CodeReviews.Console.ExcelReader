@@ -1,5 +1,4 @@
-﻿
-using ExcelReader.Controllers;
+﻿using ExcelReader.Controllers;
 using ExcelReader.Data;
 using ExcelReader.Services;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +29,4 @@ using (var scope = host.Services.CreateScope())
 
     controller.WriteDatabaseFromExcel(writeExcel);
 }
-
-
 host.Run();
-Environment.Exit(0);

@@ -1,36 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ExcelReader.Data;
 using ExcelReader.Models;
-using ExcelReader.Data;
 
-namespace ExcelReader.Services
+namespace ExcelReader.Services;
+
+
+public class DataBaseService
 {
-
-    public class DataBaseService
+    ExcelDbContext _dbContext;
+    public DataBaseService(ExcelDbContext dbContext)
     {
-        ExcelDbContext _dbContext;
-        public DataBaseService(ExcelDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-        public void DeleteAndCreate()
-        {
-            _dbContext.Database.EnsureDeleted();
-            _dbContext.Database.EnsureCreated();
-            //    context.Database.EnsureDeleted();
+        _dbContext = dbContext;
+    }
 
-            //    // Crea la base de datos y las tablas
-            //    context.Database.EnsureCreated();
+    public void DeleteDatabase()
+    {
+        _dbContext.Database.EnsureDeleted();
+    }
 
-        }
-        public void WriteInventory(List<Inventory> inventoryList)
-        {
-            _dbContext.Inventories.AddRange(inventoryList);
+    public void CreateDatabase()
+    {
+        _dbContext.Database.EnsureCreated();
+    }
 
-            _dbContext.SaveChanges();
-        }
+    public void SaveInventory(List<Inventory> inventoryList)
+    {
+        _dbContext.Inventories.AddRange(inventoryList);
+        _dbContext.SaveChanges();
+    }
+    public List<Inventory> GetInventories()
+    {
+        List<Inventory> listInventory = _dbContext.Inventories.ToList();
+        return listInventory;
     }
 }

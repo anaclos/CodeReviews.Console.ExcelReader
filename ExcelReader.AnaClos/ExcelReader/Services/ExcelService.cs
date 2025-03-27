@@ -4,25 +4,26 @@ using OfficeOpenXml;
 namespace ExcelReader.Services;
 public class ExcelService
 {
-    //string fileName = "InventoryData.xlsx";
     string _fileName;
     public ExcelService(string fileName)
     {
         _fileName = fileName;
     }
+
     public string GetExcelFile()
     {
         string currentDirectory = Directory.GetCurrentDirectory();
         string projectDirectory = Directory.GetParent(currentDirectory).Parent.Parent.FullName;
-        //string fileName = "InventoryData.xlsx";
         string excelFile = $@"{projectDirectory}\Data\{_fileName}";
         return excelFile;
     }
+
     public List<Inventory> ReadExcel(string excelFile)
     {
         List<Inventory> inventories = new List<Inventory>();
         FileInfo existingFile = new FileInfo(excelFile);
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
         using (ExcelPackage package = new ExcelPackage(existingFile))
         {
             ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
@@ -42,6 +43,7 @@ public class ExcelService
         }
         return inventories;
     }
+
     public void WriteExcel(string excelFile)
     {
         FileInfo newFile = new FileInfo(excelFile);
