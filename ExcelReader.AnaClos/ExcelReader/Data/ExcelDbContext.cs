@@ -20,5 +20,4 @@ public class ExcelDbContext : DbContext
             .Property(e => e.Id)
             .ValueGeneratedNever(); 
     }
-
 }

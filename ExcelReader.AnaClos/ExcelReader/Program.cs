@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 bool writeExcel = false;
+
 System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 HostApplicationBuilder builder = Host.CreateApplicationBuilder(args);
 string connectionString = builder.Configuration.GetConnectionString("ExcelConnection");

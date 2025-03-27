@@ -3,7 +3,6 @@ using ExcelReader.Models;
 
 namespace ExcelReader.Services;
 
-
 public class DataBaseService
 {
     ExcelDbContext _dbContext;
@@ -27,6 +26,7 @@ public class DataBaseService
         _dbContext.Inventories.AddRange(inventoryList);
         _dbContext.SaveChanges();
     }
+
     public List<Inventory> GetInventories()
     {
         List<Inventory> listInventory = _dbContext.Inventories.ToList();
